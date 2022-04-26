@@ -1,4 +1,7 @@
 package restaurant;
+
+import java.util.Objects;
+
 public class MenuItem {
     private String category;
     private String name;
@@ -56,6 +59,19 @@ public class MenuItem {
 
     public void printNames() {
         System.out.println("Names:"  );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return Double.compare(menuItem.price, price) == 0 && category.equals(menuItem.category) && name.equals(menuItem.name) && description.equals(menuItem.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(category, name, price, description);
     }
 
     @Override
